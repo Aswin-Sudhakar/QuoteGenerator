@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quote of the day</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+    <div class="quote-box">
+
+        <h2>Quote of the day</h2>
+        <blockquote id="quote">loading....</blockquote>
+        <span id="author">loadin....</span>
+        <div>
+            <button onclick="getQuote(api_urlhttps);">New Quote</button>
+            
+            <button onclick="tweet()"> <img src="./images/[CITYPNG.COM]HD Twitter X New Logo PNG - 3000x3000.png" alt="">Tweet</button>
+        </div>
+
+    </div>
+
+
+
+
+
+
+    <script>
+        
+        const author = document.getElementById("author");
+        const quote = document.getElementById("quote");
+
+        const api_urlhttps = "//api.quotable.io/random";
+        async function getQuote(url){
+            const response = await fetch(url);
+            var data = await response.json();
+            quote.innerHTML = data.content;
+            author.innerHTML = data.author;
+        }
+
+        getQuote(api_urlhttps);
+        
+        function tweet(){
+            window.open("https://twitter.com/intent/tweet?text=" + encodeURIComponent(quote.innerHTML + " - " + author.innerHTML), "tweet Window" , "width=600, height=600");
+        }
+        
+
+    </script>
+</body>
+</html>
